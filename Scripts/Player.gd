@@ -7,6 +7,8 @@ export var gravity = 2500
 export var jump_speed = 1000
 onready var player := $Sprite
 var player_dir = 1 # 0 - left, 1 - right
+var bullet_dist_left = Vector2(60, -20)
+var bullet_dist_right = Vector2(-60, -20)
 
 export (PackedScene) var box : PackedScene
 
@@ -27,10 +29,12 @@ func get_8way_input():
 		velocity.x =velocity_2.x
 		if velocity.x < 0:
 			player_dir = 0
-			player.play("walk-left")
+			player.flip_h = true
+			player.play("walk")
 		elif velocity.x > 0:
 			player_dir = 1
-			player.play("walk-right")
+			player.flip_h = false
+			player.play("walk")
 		elif velocity.y > 0:
 			print("down")
 		elif velocity.y < 0:
@@ -39,9 +43,11 @@ func get_8way_input():
 			player.frame = 0
 			if(is_on_floor()):
 				if(player_dir == 0):
-					player.play("idle-left")
+					player.flip_h = true
+					player.play("idle")
 				else:
-					player.play("idle-right")
+					player.flip_h = false
+					player.play("idle")
 			player.stop()
 		
 func get_action_buttons():
@@ -50,11 +56,18 @@ func get_action_buttons():
 		velocity.y = -jump_ajust
 		if(is_on_floor()):
 			if(player_dir == 0):
-				player.play("jump-left")
+				player.flip_h = true
+				player.play("jump")
 			else:
-				player.play("jump-right")
+				player.flip_h = false
+				player.play("jump")
 	if Input.is_action_just_pressed("shoot"):
+		var bullet_dist = 0
+		if(player_dir == 1):
+			bullet_dist = bullet_dist_left
+		else:
+			bullet_dist = bullet_dist_right
 		var b := box.instance()
 		b.setDirection(player_dir)
-		b.position = global_position
+		b.position = global_position + bullet_dist
 		owner.add_child(b)
