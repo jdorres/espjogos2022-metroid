@@ -14,6 +14,11 @@ config/name="espjogos2022-metroid"
 run/main_scene="res://Scenes/GameController.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=768
+window/size/height=720
+
 [global]
 
 render=false
