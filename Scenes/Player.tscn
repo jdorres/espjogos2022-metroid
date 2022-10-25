@@ -1,7 +1,32 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/sprite_samus-ajustado.png" type="Texture" id=3]
+
+[sub_resource type="AtlasTexture" id=65]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 200, 375, 100, 125 )
+
+[sub_resource type="AtlasTexture" id=66]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 0, 375, 100, 125 )
+
+[sub_resource type="AtlasTexture" id=67]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 100, 375, 100, 125 )
+
+[sub_resource type="AtlasTexture" id=68]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 200, 375, 100, 125 )
+
+[sub_resource type="AtlasTexture" id=69]
+flags = 4
+atlas = ExtResource( 3 )
+region = Rect2( 300, 375, 100, 125 )
 
 [sub_resource type="AtlasTexture" id=64]
 flags = 4
@@ -30,6 +55,16 @@ region = Rect2( 300, 125, 100, 125 )
 
 [sub_resource type="SpriteFrames" id=16]
 animations = [ {
+"frames": [ SubResource( 65 ) ],
+"loop": true,
+"name": "ball_idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ) ],
+"loop": true,
+"name": "ball_movement",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 64 ) ],
 "loop": true,
 "name": "idle",
@@ -54,7 +89,7 @@ script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 16 )
-animation = "idle"
+animation = "New Anim"
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
