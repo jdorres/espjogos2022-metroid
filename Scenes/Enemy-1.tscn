@@ -16,7 +16,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 21.2499, 2.9375 )
+extents = Vector2( 32, 10 )
 
 [node name="Enemy-2" type="KinematicBody2D"]
 collision_layer = 2
@@ -30,40 +30,19 @@ shape = SubResource( 3 )
 position = Vector2( 2.27374e-13, 1 )
 scale = Vector2( 0.691781, 0.691781 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
-
-[node name="FloorChecker" type="Area2D" parent="."]
-position = Vector2( -1, 0 )
-
-[node name="CollisionFloorChecker" type="CollisionShape2D" parent="FloorChecker"]
-position = Vector2( 0, 26 )
-shape = SubResource( 4 )
 
 [node name="Right_Collision" type="RayCast2D" parent="."]
 position = Vector2( 22, 3 )
 rotation = 1.57118
 enabled = true
+cast_to = Vector2( -0.981201, 49.0004 )
 collide_with_areas = true
 
-[node name="Right_Floor_Collision" type="RayCast2D" parent="."]
-position = Vector2( -24, -23 )
-rotation = -0.0095067
-enabled = true
-cast_to = Vector2( -0.484835, 50.9977 )
-collide_with_areas = true
+[node name="Left_Floor_Collision" type="Area2D" parent="."]
 
-[node name="Left_Floor_Collision" type="RayCast2D" parent="."]
-position = Vector2( 22, -26 )
-rotation = 0.00999272
-enabled = true
-cast_to = Vector2( 0.5396, 53.9973 )
-collide_with_areas = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left_Floor_Collision"]
+position = Vector2( -7, 39 )
+shape = SubResource( 4 )
 
-[node name="Left_Collision" type="RayCast2D" parent="."]
-position = Vector2( -22, 8 )
-rotation = 4.71239
-enabled = true
-collide_with_areas = true
-
-[connection signal="body_exited" from="FloorChecker" to="." method="_on_FloorChecker_body_exited"]
+[connection signal="body_exited" from="Left_Floor_Collision" to="." method="_on_Left_Floor_Collision_body_exited"]

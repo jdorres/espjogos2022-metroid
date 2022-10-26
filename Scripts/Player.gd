@@ -6,7 +6,7 @@ export (int) var speed = 250
 export var gravity = 2500
 export var jump_speed = 1000
 onready var player := $Sprite
-var player_dir = 1 # 0 - left, 1 - right
+var player_dir = 1
 var player_form = 'standing'
 var bullet_dist_left = Vector2(60, -20)
 var bullet_dist_right = Vector2(-60, -20)
@@ -39,10 +39,6 @@ func get_8way_input():
 				player_dir = 1
 				player.flip_h = false
 				player.play("walk")
-			elif velocity.y > 0:
-				print("down")
-			elif velocity.y < 0:
-				print("up")
 			else:
 				player.frame = 0
 				if(is_on_floor()):
@@ -104,7 +100,6 @@ func get_action_buttons():
 			b.setDirection(player_dir)
 			b.position = global_position + bullet_dist
 			owner.add_child(b)
-		
 		if Input.is_action_just_pressed("down"):
 			$CollisionShape2D.scale.y = 0.4
 			$CollisionShape2D.scale.x = 0.8
