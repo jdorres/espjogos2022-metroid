@@ -1,11 +1,13 @@
 extends KinematicBody2D
 
+onready var player := $Sprite
+
+export (PackedScene) var box : PackedScene
+export (int) var speed = 250
+export var gravity = 1500
+export var jump_speed = 500
 
 var velocity = Vector2()
-export (int) var speed = 250
-export var gravity = 2500
-export var jump_speed = 1000
-onready var player := $Sprite
 var player_dir = 1
 var player_form = 'standing'
 var bullet_dist = 0
@@ -13,8 +15,7 @@ var bullet_dist_left = Vector2(60, -20)
 var bullet_dist_right = Vector2(-60, -20)
 var bullet_dist_up_left = Vector2(20,-65)
 var bullet_dist_up_right = Vector2(-20,-65)
-
-export (PackedScene) var box : PackedScene
+var life_bar = 30
 
 func _ready() -> void:
 	player.stop()
@@ -25,7 +26,6 @@ func _physics_process(delta):
 	velocity.y += gravity * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 	
-
 func get_8way_input():
 	
 	if player_form == 'standing':
@@ -124,5 +124,21 @@ func get_action_buttons():
 			$CollisionShape2D.scale.y = 1
 			$CollisionShape2D.scale.x = 1
 			player_form = 'standing'
-		
+			
+			
+func hit_points(enemy_pos,damage):
+	life_bar -= damage
+	print(life_bar)
+	if life_bar <= 0:
+		print('game_over')
+		$Sprite.hide()
+		yield(get_tree().create_timer(1), "timeout")
+		get_tree().reload_current_scene()
+
+	else:
+		Global.invincibility = true
+		yield(get_tree().create_timer(1), "timeout")
+		Global.invincibility = false
+
+	
 

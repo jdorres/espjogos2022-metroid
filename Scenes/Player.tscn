@@ -74,15 +74,17 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=42]
 extents = Vector2( 24.5, 41 )
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 16 )
 animation = "ball_movement"
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.5, 3 )
 shape = SubResource( 42 )
+
+[node name="Timer" type="Timer" parent="."]
