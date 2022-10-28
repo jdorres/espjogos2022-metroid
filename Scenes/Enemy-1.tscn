@@ -18,7 +18,7 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 32, 10 )
 
-[node name="Enemy-2" type="KinematicBody2D"]
+[node name="Enemy-2" type="KinematicBody2D" groups=["enemy"]]
 script = ExtResource( 3 )
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
@@ -29,6 +29,7 @@ shape = SubResource( 3 )
 position = Vector2( 2.27374e-13, 1 )
 scale = Vector2( 0.691781, 0.691781 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Right_Collision" type="RayCast2D" parent="."]

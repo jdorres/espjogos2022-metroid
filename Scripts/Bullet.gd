@@ -1,12 +1,16 @@
-extends Sprite
+extends RigidBody2D
 
-var direction
+var bullet_dir = Global.bullet_direction
 
 func _physics_process(delta):
-	position.x = position.x + 3000 * delta * direction
 	
-func setDirection(dir):
-	if(dir == 0):
-		direction = -1
+	if bullet_dir == 1 or bullet_dir == -1:
+		position.x = position.x + 1500 * delta * bullet_dir
 	else:
-		direction = 1
+		position.y = position.y + 1500 * delta * -1
+	
+func _on_Bullet_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.hit_points()
+		queue_free()
+	pass # Replace with function body.
