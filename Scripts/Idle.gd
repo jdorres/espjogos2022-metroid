@@ -13,10 +13,7 @@ func update(delta: float) -> void:
 	
 	player.velocity.y += player.gravity * delta
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
-	# If you have platforms that break when standing on them, you need that check for 
-	# the character to fall.
 	if not player.is_on_floor():
-		print('fora do ar')
 		state_machine.transition_to("Jump")
 		return
 
@@ -24,3 +21,5 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		state_machine.transition_to("Run")
+	elif Input.is_action_pressed("down"):
+		state_machine.transition_to("Ball")

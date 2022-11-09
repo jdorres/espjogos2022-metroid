@@ -2,13 +2,14 @@ class_name Player
 extends KinematicBody2D
 
 onready var player := $Sprite
+onready var collision := $CollisionShape2D 
 onready var animation_tree = get_node("AnimationTree")
 onready var animation_mode = animation_tree.get("parameters/playback")
 
 export (PackedScene) var box : PackedScene
 export (int) var speed = 250
-export var gravity = 1500
-export var jump_speed = 300
+export var gravity = 3000
+export var jump_speed = 1500
 
 var velocity = Vector2()
 var jumping = false
@@ -95,9 +96,9 @@ func get_action_buttons():
 #			b.position = global_position + bullet_dist
 #			get_parent().add_child(b)
 #
-#		if Input.is_action_just_pressed("down"):
-#			$CollisionShape2D.scale.y = 0.4
-#			$CollisionShape2D.scale.x = 0.8
+#	if Input.is_action_just_pressed("down"):
+#			CollisionShape2D.scale.y = 0.4
+#			CollisionShape2D.scale.x = 0.8
 #			player_form = 'ball'
 #			animation_mode.travel("Ball")
 #
