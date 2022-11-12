@@ -1,4 +1,4 @@
-# Idle.gd
+class_name Idle
 extends PlayerState
 
 # Upon entering the state, we set the Player node's velocity to zero.
@@ -9,6 +9,7 @@ func enter(_msg := {}) -> void:
 
 
 func update(delta: float) -> void:
+	print('update idle')
 	player.animation_mode.travel("Idle")
 	
 	player.velocity.y += player.gravity * delta
@@ -23,3 +24,5 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Run")
 	elif Input.is_action_pressed("down"):
 		state_machine.transition_to("Ball")
+	elif Input.is_action_pressed("up"):
+		state_machine.transition_to("IdleShootingUp")

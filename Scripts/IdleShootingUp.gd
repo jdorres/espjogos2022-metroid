@@ -1,8 +1,10 @@
-
-extends PlayerState
+class_name IdleShootingUp
+extends Idle
 
 func enter(_msg := {}) -> void:
-	print('entered idle shooting')
+	print('entered idle shooting up')
 
 func update(delta: float) -> void:
-	print('update idle shooting')
+	#parent method
+	.update(delta)
+	print('update idle shooting up')

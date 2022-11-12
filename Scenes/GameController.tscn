@@ -193,23 +193,25 @@ current = true
 script = ExtResource( 8 )
 nodePlayer = NodePath("../Player")
 
-[node name="Enemy-1" parent="." instance=ExtResource( 10 )]
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Enemy-1" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 311, 142 )
 
-[node name="Enemy-2" parent="." instance=ExtResource( 10 )]
+[node name="Enemy-2" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 674, 448 )
 movement_direction = "left"
 
-[node name="Enemy-3" parent="." instance=ExtResource( 10 )]
+[node name="Enemy-3" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 468, 140 )
 movement_direction = "left"
 
-[node name="Enemy-4" parent="." instance=ExtResource( 10 )]
+[node name="Enemy-4" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 185, 449 )
 
-[node name="Enemy-5" parent="." instance=ExtResource( 10 )]
+[node name="Enemy-5" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 1205, 186 )
 
-[node name="Enemy-6" parent="." instance=ExtResource( 10 )]
+[node name="Enemy-6" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 1261, 452 )
 movement_direction = "left"

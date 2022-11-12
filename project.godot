@@ -9,6 +9,36 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "PlayerState",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://Scripts/Idle.gd"
+}, {
+"base": "Idle",
+"class": "IdleShooting",
+"language": "GDScript",
+"path": "res://Scripts/IdleShooting.gd"
+}, {
+"base": "Idle",
+"class": "IdleShootingUp",
+"language": "GDScript",
+"path": "res://Scripts/IdleShootingUp.gd"
+}, {
+"base": "PlayerState",
+"class": "Jump",
+"language": "GDScript",
+"path": "res://Scripts/Jump.gd"
+}, {
+"base": "Jump",
+"class": "JumpShooting",
+"language": "GDScript",
+"path": "res://Scripts/JumpShooting.gd"
+}, {
+"base": "Jump",
+"class": "JumpShootingUp",
+"language": "GDScript",
+"path": "res://Scripts/JumpShootingUp.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -30,6 +60,12 @@ _global_script_classes=[ {
 "path": "res://Scripts/StateMachine.gd"
 } ]
 _global_script_class_icons={
+"Idle": "",
+"IdleShooting": "",
+"IdleShootingUp": "",
+"Jump": "",
+"JumpShooting": "",
+"JumpShootingUp": "",
 "Player": "",
 "PlayerState": "",
 "State": "",

@@ -1,3 +1,4 @@
+class_name Jump
 extends PlayerState
 
 # If we get a message asking us to jump, we jump.
