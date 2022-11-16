@@ -1,12 +1,10 @@
 class_name JumpShooting
-extends Jump
+extends PlayerState
 
-func enter(_msg := {}) -> void:
-	#parent method
-	.enter()
-	print('entered idle shooting')
+func enter(msg := {}) -> void:
+	print('entered jump shooting')
+	if msg.has("do_jump"):
+		player.velocity.y = -player.jump_speed
 
 func update(delta: float) -> void:
-	#parent method
-	.update(delta)
-	print('update idle shooting')
+	print('update jump shooting')

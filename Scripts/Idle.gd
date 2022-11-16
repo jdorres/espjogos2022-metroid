@@ -3,14 +3,12 @@ extends PlayerState
 
 # Upon entering the state, we set the Player node's velocity to zero.
 func enter(_msg := {}) -> void:
-	print('entered idle')
 	# We must declare all the properties we access through `owner` in the `Player.gd` script.
 	player.velocity = Vector2.ZERO
 
 
 func update(delta: float) -> void:
-	print('update idle')
-	player.animation_mode.travel("Idle")
+	player.animation_mode.play("Idle")
 	
 	player.velocity.y += player.gravity * delta
 	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
@@ -24,5 +22,5 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Run")
 	elif Input.is_action_pressed("down"):
 		state_machine.transition_to("Ball")
-	elif Input.is_action_pressed("up"):
-		state_machine.transition_to("IdleShootingUp")
+	elif Input.is_action_just_pressed("up"):
+		state_machine.transition_to("IdlePointingUp")

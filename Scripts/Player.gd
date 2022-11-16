@@ -1,10 +1,10 @@
 class_name Player
 extends KinematicBody2D
 
-onready var player := $Sprite
+onready var sprite := $Sprite
 onready var collision := $CollisionShape2D 
 onready var animation_tree = get_node("AnimationTree")
-onready var animation_mode = animation_tree.get("parameters/playback")
+onready var animation_mode = get_node("AnimationPlayer")
 
 export (PackedScene) var box : PackedScene
 export (int) var speed = 250
@@ -23,7 +23,7 @@ var bullet_dist_up_right = Vector2(-20,-65)
 var life_bar = 30
 
 func _ready() -> void:
-	animation_mode.start("Idle")
+	animation_mode.play("Idle")
 
 func _physics_process(delta):
 #	get_8way_input()

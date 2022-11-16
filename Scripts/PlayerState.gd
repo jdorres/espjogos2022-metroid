@@ -5,7 +5,7 @@ extends State
 
 # Typed reference to the player node.
 var player: Player
-
+var input_direction_x
 
 func _ready() -> void:
 	# The states are children of the `Player` node so their `_ready()` callback will execute first.
@@ -18,3 +18,30 @@ func _ready() -> void:
 	# in a scene other than `Player.tscn`, which would be unintended. This can
 	# help prevent some bugs that are difficult to understand.
 	assert(player != null)
+
+func player_run(delta):
+	input_direction_x  = (
+		Input.get_action_strength("right")
+		- Input.get_action_strength("left")
+	)
+	player.velocity.x = player.speed * input_direction_x
+	player.velocity.y += player.gravity * delta
+	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	
+	if input_direction_x > 0:
+		player.sprite.flip_h = false
+	elif input_direction_x < 0:
+		player.sprite.flip_h = true
+		
+
+func player_jump(delta):
+	print('player jump')
+	input_direction_x = (Input.get_action_strength("right") - Input.get_action_strength("left"))
+	player.velocity.x = player.speed * input_direction_x
+	player.velocity.y += player.gravity * delta
+	player.velocity = player.move_and_slide(player.velocity, Vector2.UP)
+	
+	if input_direction_x > 0:
+		player.sprite.flip_h = false
+	elif input_direction_x < 0:
+		player.sprite.flip_h = true
