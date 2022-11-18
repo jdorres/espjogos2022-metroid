@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Scripts/Gun.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scripts/Idle.gd" type="Script" id=8]
 [ext_resource path="res://Scripts/RunPointingUp.gd" type="Script" id=9]
 [ext_resource path="res://Scripts/RunShooting.gd" type="Script" id=10]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scripts/JumpPointingUp.gd" type="Script" id=12]
 [ext_resource path="res://Scripts/JumpShooting.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/IdlePointingUp.gd" type="Script" id=14]
@@ -262,9 +263,11 @@ start_node = "Idle"
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 script = ExtResource( 2 )
+box = ExtResource( 11 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.336634, 0.336634 )
+position = Vector2( -1.24999, -0.5594 )
+scale = Vector2( 0.373762, 0.373762 )
 texture = ExtResource( 3 )
 hframes = 5
 vframes = 8
@@ -340,3 +343,20 @@ script = ExtResource( 15 )
 
 [node name="PlayerState" type="Node" parent="."]
 script = ExtResource( 4 )
+
+[node name="BulletPositions" type="Node2D" parent="."]
+
+[node name="ShootingLeft" type="Node2D" parent="BulletPositions"]
+position = Vector2( -22, -5 )
+
+[node name="ShootingRight" type="Node2D" parent="BulletPositions"]
+position = Vector2( 20, -6 )
+
+[node name="ShootingUpLeft" type="Node2D" parent="BulletPositions"]
+position = Vector2( -3, -27 )
+
+[node name="ShootingUpRight" type="Node2D" parent="BulletPositions"]
+position = Vector2( 4, -27 )
+
+[node name="ShootingUp" type="Node2D" parent="BulletPositions"]
+position = Vector2( -1, -39 )
