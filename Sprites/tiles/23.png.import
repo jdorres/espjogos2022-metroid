@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite criatura_sem_particulas.png-cb5d8fc00dfa5b3a84f0ecb9b6f66767.stex"
+path="res://.import/23.png-9541beb3db8a1d3e1d4fbd57a8de3521.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/sprite criatura_sem_particulas.png"
-dest_files=[ "res://.import/sprite criatura_sem_particulas.png-cb5d8fc00dfa5b3a84f0ecb9b6f66767.stex" ]
+source_file="res://Sprites/tiles/23.png"
+dest_files=[ "res://.import/23.png-9541beb3db8a1d3e1d4fbd57a8de3521.stex" ]
 
 [params]
 
