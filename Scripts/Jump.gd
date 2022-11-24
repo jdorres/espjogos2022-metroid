@@ -8,8 +8,9 @@ func enter(msg := {}) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
-	player.animation_mode.play("Jumping")
+	#player.animation_mode.play("Jumping")
+	player.get_node("Sprite").play("jump")
 	.player_jump(delta)
 
-	if player.is_on_floor():
+	if player.is_on_floor() :
 		state_machine.transition_to("Idle")

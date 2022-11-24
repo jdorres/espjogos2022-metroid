@@ -8,8 +8,8 @@ func enter(msg := {}) -> void:
 
 
 func physics_update(delta: float) -> void:
-	player.animation_mode.play("Run")
-	
+	#player.animation_mode.play("Run")
+	player.get_node("Sprite").play("running");
 	.player_run(delta)
 	
 	if not player.is_on_floor():

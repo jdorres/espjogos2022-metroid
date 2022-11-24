@@ -8,8 +8,8 @@ func enter(msg := {}) -> void:
 		player.velocity.y = -player.jump_speed
 
 func physics_update(delta: float) -> void:
-	player.animation_mode.play("JumpingRoll")
-	
+	#player.animation_mode.play("JumpingRoll")
+	player.get_node("Sprite").play("jumpRolling")
 	.player_jump(delta)
 	
 	if player.is_on_floor():

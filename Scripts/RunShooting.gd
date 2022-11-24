@@ -6,7 +6,8 @@ func enter(_msg := {}) -> void:
 
 func update(delta: float) -> void:
 	print('update run shooting')
-	player.animation_mode.play('RunShooting')
+	#player.animation_mode.play('RunShooting')
+	player.get_node("Sprite").play("run_shooting");
 
 	.player_run(delta)
 	

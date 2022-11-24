@@ -6,8 +6,8 @@ func enter(_msg := {}) -> void:
 
 func update(delta: float) -> void:
 	print('update run shooting up')
-	player.animation_mode.play('RunPointingUp')
-
+	#player.animation_mode.play('RunPointingUp')
+	player.get_node("Sprite").play("run_shooting_up")
 	.player_run(delta)
 	
 	if Input.is_action_just_released('up'):

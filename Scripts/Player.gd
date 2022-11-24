@@ -24,41 +24,33 @@ var player_form = 'standing'
 var bullet_dist = 0
 var life_bar = 30
 
+var shoot_sequencial=false
+var first_shoot=true
+var activate_pisca=true
+
+var damage_taken = false
 func _ready() -> void:
 	animation_mode.play("Idle")
 
-func _physics_process(delta):
-#	get_8way_input()
-	get_action_buttons()
-#	velocity.y += gravity * delta
-#	velocity = move_and_slide(velocity, Vector2.UP)
+func _physics_process(delta): 
+	get_action_buttons()   
 	pass
 	
-func get_8way_input():
-		#	if(is_on_floor()):
-		#		jumping = false
-		#		velocity.x = Input.get_action_strength("right")-Input.get_action_strength("left")
-		#
-		#		if velocity.x != 0:	
-		#			player_dir = velocity.x
-		#			if player_dir > 0:
-		#				player.scale.x = 1
-		#			else:
-		#				player.scale.x = -1
-		#				player.scale.x = -1
-		#
-		#		velocity = velocity.normalized() * speed
-		#
-		#		if player_form == 'standing':
-		#			animation_mode.travel("Running")
-		#			if velocity.x == 0:
-		#				animation_tree.set("parameters/Idle/blend_position", player_dir)
-		#				animation_mode.travel("Idle")
-		#
-		#		elif player_form == 'ball':
-		#			animation_tree.set("parameters/Ball/blend_position", player_dir)
-	pass
-			
+ 
+	
+func bala():
+		var bullet := box.instance()
+		if state_machine.state.get_name() == 'Idle' || state_machine.state.get_name() == 'Run':
+			get_node("RestShoot").start()
+			if sprite.flip_h == true:
+				Global.bullet_direction = -1
+				bullet_pos_left.add_child(bullet)
+			elif sprite.flip_h == false:
+				Global.bullet_direction = 1
+				bullet_pos_right.add_child(bullet)
+		if state_machine.state.get_name() == 'IdlePointingUp' || state_machine.state.get_name() == 'RunPointingUp' || state_machine.state.get_name() == 'JumpPointingUp':
+			Global.bullet_direction = 0
+			bullet_pos_up.add_child(bullet)	
 func get_action_buttons():
 	#	if player_form == 'standing':
 			#		if Input.is_action_just_pressed("shoot_up"):
@@ -81,19 +73,12 @@ func get_action_buttons():
 			#		b.position = global_position + bullet_dist
 			#		get_parent().add_child(b)
 			#
-	if Input.is_action_just_pressed("shoot"):
-		var bullet := box.instance()
-		if state_machine.state.get_name() == 'Idle' || state_machine.state.get_name() == 'Run':
-			if sprite.flip_h == true:
-				Global.bullet_direction = -1
-				bullet_pos_left.add_child(bullet)
-			elif sprite.flip_h == false:
-				Global.bullet_direction = 1
-				bullet_pos_right.add_child(bullet)
-		if state_machine.state.get_name() == 'IdlePointingUp' || state_machine.state.get_name() == 'RunPointingUp' || state_machine.state.get_name() == 'JumpPointingUp':
-			Global.bullet_direction = 0
-			bullet_pos_up.add_child(bullet)
-			
+	if Input.is_action_pressed("shoot"):
+		if(first_shoot):
+			bala()
+			first_shoot=false
+			$InBetweenShoot.start()
+		 
 #		if Input.is_action_just_pressed("shoot"):
 #			if(player_dir == 1):
 #				bullet_dist = bullet_dist_left
@@ -115,21 +100,56 @@ func get_action_buttons():
 #			$CollisionShape2D.scale.y = 1
 #			$CollisionShape2D.scale.x = 1
 #			player_form = 'standing'
-#			animation_mode.travel("Idle")
+#			animation_mode.travel("Idle")e
+	else:
+		shoot_sequencial=false
+		first_shoot=true
 	pass
 			
 func hit_points(enemy_pos,damage):
-#	life_bar -= damage
-#	print(life_bar)
-#	if life_bar <= 0:
-#		print('game_over')
-#		$Sprite.hide()
-#		yield(get_tree().create_timer(1), "timeout")
-#		get_tree().reload_current_scene()
-#
-#	else:
-#		Global.invincibility = true
-#		yield(get_tree().create_timer(1), "timeout")
-#		Global.invincibility = false
+	life_bar -= damage
+	#print(life_bar)
+	damage_taken=true 
+	
+	$Invinicibility.start()
+	if life_bar <= 0:
+		print('game_over')
+
+		yield(get_tree().create_timer(1), "timeout")
+		get_tree().reload_current_scene()
+
+	else:
+		Global.invincibility = true  
+		$Pisca.start()
 	pass
 
+
+
+func _on_RestShoot_timeout():
+	shoot_sequencial=true
+	pass # Replace with function body.
+
+
+func _on_InBetweenShoot_timeout():
+	$InBetweenShoot.wait_time=0.15
+	first_shoot=true
+	pass # Replace with function body.
+
+
+func _on_Invinicibility_timeout():
+	$Invinicibility.stop() 
+	$Pisca.stop()
+	Global.invincibility = false 
+	$Sprite.visible=true
+	pass # Replace with function body.
+
+
+func _on_Pisca_timeout():  
+	print("ENTROU")
+	$Pisca.wait_time=0.15 
+	if($Sprite.visible==false):
+		$Sprite.visible=true
+	elif($Sprite.visible==true):
+		$Sprite.visible=false  
+		
+	pass # Replace with function body.
