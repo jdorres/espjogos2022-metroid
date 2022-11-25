@@ -109,6 +109,7 @@ func hit_points(enemy_pos: Vector2, damage: int) -> void:
 	if $Invinicibility.is_stopped():
 		$Invinicibility.start()
 	if $Pisca.is_stopped(): 
+		print("PISCA")
 		$Pisca.start()
 
 func _on_RestShoot_timeout():

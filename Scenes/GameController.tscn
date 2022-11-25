@@ -888,11 +888,10 @@ position = Vector2( 726, -69 )
 movement_direction = "left"
 
 [node name="Enemy-2" parent="Enemies" instance=ExtResource( 10 )]
-position = Vector2( -991, 557 )
+position = Vector2( -1021, 559 )
 
 [node name="Enemy-3" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 340, -78 )
-movement_direction = "left"
 
 [node name="Enemy-4" parent="Enemies" instance=ExtResource( 10 )]
 position = Vector2( 1918, 757 )
@@ -915,5 +914,5 @@ position = Vector2( 2677, 137 )
 scale = Vector2( 1, 1.08333 )
 texture = ExtResource( 2 )
 
-[node name="MorphBall" parent="." instance=ExtResource( 5 )]
-position = Vector2( -684, 367 )
+[node name="MorphBall2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -681, 363 )

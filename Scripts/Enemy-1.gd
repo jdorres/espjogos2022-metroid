@@ -9,6 +9,8 @@ export (int) var speed = 200
 export (float) var rotation_speed = 1.5
 var velocity = Vector2()
 
+export (PackedScene) var life : PackedScene
+
 func _physics_process(delta):
 	if movement_direction == 'right':
 		velocity = Vector2(speed, 0).rotated(rotation)
@@ -38,6 +40,11 @@ func _on_Floor_Collision_body_exited(body):
 func hit_points():
 	hit += 1 
 	if hit == 2:
+		var randomNumber = rand_range(0,1)
+		if randomNumber <= 0.5:
+			var lifepoint := life.instance()
+			get_parent().add_child(lifepoint)
+			lifepoint.position = position
 		queue_free()
 
 func _on_Body_Collision_body_entered(body):

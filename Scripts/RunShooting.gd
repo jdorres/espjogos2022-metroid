@@ -2,10 +2,10 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
-	print('entered run shooting')
+	#print('entered run shooting')
+	pass
 
 func update(delta: float) -> void:
-	print('update run shooting')
 	#player.animation_mode.play('RunShooting')
 	player.get_node("Sprite").play("run_shooting");
 
