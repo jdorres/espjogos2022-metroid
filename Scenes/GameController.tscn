@@ -1,7 +1,8 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Sprites/tiles/PORTA.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/HUD.gd" type="Script" id=3]
 [ext_resource path="res://Scripts/GameController.gd" type="Script" id=4]
 [ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Enemy-1.tscn" type="PackedScene" id=10]
@@ -37,6 +38,15 @@
 [ext_resource path="res://Sprites/tiles/12.png" type="Texture" id=40]
 [ext_resource path="res://Sprites/tiles/10.png" type="Texture" id=41]
 [ext_resource path="res://Sprites/tiles/14.png" type="Texture" id=42]
+
+[sub_resource type="DynamicFontData" id=45]
+font_path = "res://PressStart2P.ttf"
+
+[sub_resource type="DynamicFont" id=46]
+size = 32
+extra_spacing_top = 5
+extra_spacing_bottom = 5
+font_data = SubResource( 45 )
 
 [sub_resource type="ConvexPolygonShape2D" id=11]
 points = PoolVector2Array( 0, 0, 48, 0, 64, 64, 0, 48 )
@@ -835,6 +845,21 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [node name="GameController" type="Node2D"]
 script = ExtResource( 4 )
 
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
+
+[node name="Control" type="Control" parent="HUD"]
+margin_right = 1286.0
+margin_bottom = 60.0
+
+[node name="LifePointsLabel" type="Label" parent="HUD/Control"]
+margin_right = 287.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 46 )
+text = "30"
+
+[node name="GameOverTimer" type="Timer" parent="."]
+
 [node name="TileMap2" type="TileMap" parent="."]
 position = Vector2( 54, 11 )
 tile_set = SubResource( 44 )
@@ -863,26 +888,21 @@ position = Vector2( 726, -69 )
 movement_direction = "left"
 
 [node name="Enemy-2" parent="Enemies" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 155, 556 )
+position = Vector2( -172, -18 )
 movement_direction = "left"
 
 [node name="Enemy-3" parent="Enemies" instance=ExtResource( 10 )]
-visible = false
 position = Vector2( 340, -78 )
 movement_direction = "left"
 
 [node name="Enemy-4" parent="Enemies" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 726, -80 )
+position = Vector2( 1918, 757 )
 
 [node name="Enemy-5" parent="Enemies" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 832, 554 )
+position = Vector2( 2134, 114 )
 
 [node name="Enemy-6" parent="Enemies" instance=ExtResource( 10 )]
-visible = false
-position = Vector2( 1261, 452 )
+position = Vector2( 2258, 886 )
 movement_direction = "left"
 
 [node name="Porta" type="Sprite" parent="."]
