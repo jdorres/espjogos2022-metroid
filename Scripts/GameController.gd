@@ -1,15 +1,18 @@
 extends Node2D
 
-onready var bullet_pos_left = get_node('BulletPositions/ShootingLeft')
-onready var bullet_pos_right = get_node('BulletPositions/ShootingRight')
-onready var bullet_pos_up_left = get_node('BulletPositions/ShootingUpLeft')
-onready var bullet_pos_up_right = get_node('BulletPositions/ShootingUpRight')
-onready var bullet_pos_up = get_node('BulletPositions/ShootingUp')
+func _ready() -> void:
+	$GameOverTimer.connect("timeout", self, "reload")
+	$GameOverTimer.set_wait_time(0.1)
 
-func _ready():
-	pass # Replace with function body.
+func _physics_process(_delta: float) -> void:
+	check_game_over()
 
+func check_game_over() -> void:
+	if Global.player_life_points < 1:
+		if $GameOverTimer.is_stopped():
+			$GameOverTimer.start()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func reload() -> void:
+	Global.player_life_points = 30
+	get_tree().reload_current_scene()
+

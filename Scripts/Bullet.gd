@@ -3,7 +3,13 @@ extends Area2D
 var bullet_dir
 var pos_x
 var pos_y
+
+onready var timer := $Timer
+
 func _ready() -> void:
+	timer.connect("timeout", self, "queue_free")
+	timer.set_wait_time(0.25)
+	timer.start()
 	bullet_dir = Global.bullet_direction
 	pos_x = position.x
 	pos_y = position.y
@@ -15,9 +21,6 @@ func _physics_process(delta):
 	else:
 		position.y = position.y + 700 * delta * -1
 		position.x = pos_x
-		
-	yield(get_tree().create_timer(0.25), "timeout")
-	queue_free()
 	
 func _on_Bullet_body_entered(body):
 	if body.is_in_group("enemy"):

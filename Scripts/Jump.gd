@@ -8,6 +8,7 @@ func enter(msg := {}) -> void:
 	pass
 
 func physics_update(delta: float) -> void:
+	print("JUMP")
 	#player.animation_mode.play("Jumping")
 	player.get_node("Sprite").play("jump")
 	.player_jump(delta)

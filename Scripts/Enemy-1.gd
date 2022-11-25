@@ -28,7 +28,6 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 func _on_Floor_Collision_body_exited(body):
-	
 	if(body.is_in_group("player")):
 		return
 	if movement_direction == 'left':
@@ -43,8 +42,7 @@ func hit_points():
 
 func _on_Body_Collision_body_entered(body):
 	if body.is_in_group("player"):  
-		if Global.invincibility == false: 
+		if not Global.invincibility: 
+			Global.invincibility = true
+			Global.player_life_points -= 8
 			body.hit_points(global_position, 8)
-			
-
-

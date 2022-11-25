@@ -2,9 +2,9 @@ class_name Player
 extends KinematicBody2D
 
 onready var sprite := $Sprite
-onready var collision := $CollisionShape2D
+onready var collision := $Stand
 onready var state_machine := $StateMachine
-onready var animation_tree = get_node("AnimationTree")
+#onready var animation_tree = get_node("AnimationTree")
 onready var animation_mode = get_node("AnimationPlayer")
 onready var bullet_pos_left = get_node('BulletPositions/ShootingLeft')
 onready var bullet_pos_right = get_node('BulletPositions/ShootingRight')
@@ -36,7 +36,7 @@ func _physics_process(delta):
 	get_action_buttons()   
 	pass
 	
- 
+
 	
 func bala():
 		var bullet := box.instance()
@@ -104,52 +104,28 @@ func get_action_buttons():
 	else:
 		shoot_sequencial=false
 		first_shoot=true
-	pass
-			
-func hit_points(enemy_pos,damage):
-	life_bar -= damage
-	#print(life_bar)
-	damage_taken=true 
-	
-	$Invinicibility.start()
-	if life_bar <= 0:
-		print('game_over')
 
-		yield(get_tree().create_timer(1), "timeout")
-		get_tree().reload_current_scene()
-
-	else:
-		Global.invincibility = true  
+func hit_points(enemy_pos: Vector2, damage: int) -> void:
+	if $Invinicibility.is_stopped():
+		$Invinicibility.start()
+	if $Pisca.is_stopped(): 
+		print("PISCA")
 		$Pisca.start()
-	pass
-
-
 
 func _on_RestShoot_timeout():
-	shoot_sequencial=true
-	pass # Replace with function body.
-
+	shoot_sequencial = true
 
 func _on_InBetweenShoot_timeout():
 	$InBetweenShoot.wait_time=0.15
 	first_shoot=true
-	pass # Replace with function body.
-
 
 func _on_Invinicibility_timeout():
-	$Invinicibility.stop() 
-	$Pisca.stop()
 	Global.invincibility = false 
-	$Sprite.visible=true
-	pass # Replace with function body.
-
+	$Sprite.visible = true
+	$Pisca.stop()
 
 func _on_Pisca_timeout():  
-	print("ENTROU")
-	$Pisca.wait_time=0.15 
-	if($Sprite.visible==false):
-		$Sprite.visible=true
-	elif($Sprite.visible==true):
-		$Sprite.visible=false  
-		
-	pass # Replace with function body.
+	if not $Sprite.visible:
+		$Sprite.visible = true
+	elif $Sprite.visible:
+		$Sprite.visible = false 
