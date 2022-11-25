@@ -34,11 +34,13 @@ script = ExtResource( 3 )
 
 [node name="BodyCollision2" type="CollisionShape2D" parent="."]
 shape = SubResource( 3 )
+disabled = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0.999992, -7.62939e-06 )
 scale = Vector2( 0.580673, 0.571697 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="Right_Collision" type="RayCast2D" parent="."]

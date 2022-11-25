@@ -372,12 +372,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 23.8125, 41 )
+extents = Vector2( 23.8125, 37.9375 )
 
 [sub_resource type="RectangleShape2D" id=95]
 extents = Vector2( 14, 16.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
+scale = Vector2( 1.6, 1.6 )
 script = ExtResource( 2 )
 box = ExtResource( 11 )
 
@@ -457,7 +458,8 @@ anims/RunPointingUp = SubResource( 78 )
 anims/Running_left = SubResource( 65 )
 
 [node name="Stand" type="CollisionShape2D" parent="."]
-position = Vector2( -2, 3 )
+position = Vector2( -2, 6.0625 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 42 )
 
 [node name="Down" type="CollisionShape2D" parent="."]

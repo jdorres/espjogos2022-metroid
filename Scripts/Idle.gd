@@ -20,7 +20,7 @@ func update(delta: float) -> void:
 		state_machine.transition_to("Jump", {do_jump = true})
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
 		state_machine.transition_to("Run")
-	if Input.is_action_pressed("down"):
+	if Input.is_action_pressed("down") and Global.morphball == true:
 		state_machine.transition_to("Ball")
 	if Input.is_action_just_pressed("up"):
 		state_machine.transition_to("IdlePointingUp") 

@@ -4,8 +4,8 @@ extends PlayerState
 
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
-	print('entered run')
-
+	#print('entered run')
+	pass
 
 func physics_update(delta: float) -> void:
 	#player.animation_mode.play("Run")
