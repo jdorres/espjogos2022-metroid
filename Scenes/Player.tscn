@@ -458,7 +458,6 @@ anims/Running_left = SubResource( 65 )
 
 [node name="Stand" type="CollisionShape2D" parent="."]
 position = Vector2( -2.5, 7.9375 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 42 )
 
 [node name="Down" type="CollisionShape2D" parent="."]
