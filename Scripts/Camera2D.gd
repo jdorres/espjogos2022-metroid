@@ -17,3 +17,4 @@ func _process(delta):
 			global_position.x-=player.speed*delta;
 		else:
 			global_position.x+=0
+
