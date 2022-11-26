@@ -372,13 +372,13 @@ tracks/0/keys = {
 }
 
 [sub_resource type="RectangleShape2D" id=42]
-extents = Vector2( 23.8125, 41 )
+extents = Vector2( 17.5, 36.0625 )
 
 [sub_resource type="RectangleShape2D" id=95]
 extents = Vector2( 14, 16.5 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
-scale = Vector2( 1.4, 1.4 )
+scale = Vector2( 1.6, 1.6 )
 script = ExtResource( 2 )
 box = ExtResource( 11 )
 
@@ -436,8 +436,7 @@ script = ExtResource( 4 )
 position = Vector2( -1.24999, -0.5594 )
 scale = Vector2( 0.373762, 0.373762 )
 frames = SubResource( 94 )
-animation = "aimrun"
-frame = 3
+animation = "idle"
 speed_scale = 2.0
 
 [node name="Gun" type="Position2D" parent="Sprite"]
@@ -458,7 +457,8 @@ anims/RunPointingUp = SubResource( 78 )
 anims/Running_left = SubResource( 65 )
 
 [node name="Stand" type="CollisionShape2D" parent="."]
-position = Vector2( -2, 3 )
+position = Vector2( -2.5, 7.9375 )
+scale = Vector2( 1, 1 )
 shape = SubResource( 42 )
 
 [node name="Down" type="CollisionShape2D" parent="."]
